@@ -1,0 +1,35 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/
+spring:
+  application:
+    name: api-base
+  datasource:
+    url: jdbc:mysql://120.24.242.243:3306/new_wuliancard?useUnicode=true&characterEncoding=utf8
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  type-aliases-package: tk.mybatis.springboot.model
+  mapper-locations: classpath*:mapper/**Mapper.xml
+  configuration:
+      map-underscore-to-camel-case: true
+mapper:
+   mappers: com.bootdo.clouddobase.dao
+   not-empty: false
+   identity: MYSQL
+pagehelper:
+   helperDialect: mysql
+   reasonable: true
+   supportMethodsArguments: true
+   params: count=countSql
+
+
+
+logging:
+   level:
+    com:
+       example:
+         looedu:
+           mapper: debug

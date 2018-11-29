@@ -1,0 +1,46 @@
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/
+#security:
+#  basic:
+#    enabled: false
+server:
+  port: 8005
+spring:
+  application:
+    name: api-admin
+  datasource:
+    url: jdbc:mysql://120.24.242.243:3306/new_wuliancard?useUnicode=true&characterEncoding=utf8
+    username: user_wlcard
+    password: passwd_wlcard
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+
+
+# mybatis配置mapper
+mybatis:
+  type-aliases-package: tk.mybatis.springboot.model
+  mapper-locations: classpath*:mapper/**Mapper.xml
+  configuration:
+      map-underscore-to-camel-case: true
+mapper:
+   mappers: com.bootdo.clouddoadmin.dao
+   not-empty: false
+   identity: MYSQL
+pagehelper:
+   helperDialect: mysql
+   reasonable: true
+   supportMethodsArguments: true
+   params: count=countSql
+#logging:
+#  level: debug
+
+logging:
+   level:
+    com:
+       example:
+         looedu:
+           mapper: debug

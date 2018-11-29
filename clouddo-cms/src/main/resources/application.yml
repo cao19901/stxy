@@ -1,0 +1,49 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/
+server:
+  port: 8004
+spring:
+  application:
+    name: api-cms
+  datasource:
+    url: jdbc:mysql://120.24.242.243:3306/new_wuliancard?useUnicode=true&characterEncoding=utf8
+    username: user_wlcard
+    password: passwd_wlcard
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 100Mb
+      max-request-size: 100Mb
+# mybatis配置mapper
+mybatis:
+  type-aliases-package: tk.mybatis.springboot.model
+  mapper-locations: classpath*:mapper/**Mapper.xml
+  configuration:
+      map-underscore-to-camel-case: true
+mapper:
+   mappers: com.bootdo.clouddocms.dao
+   not-empty: false
+   identity: MYSQL
+pagehelper:
+   helperDialect: mysql
+   reasonable: true
+   supportMethodsArguments: true
+   params: count=countSql
+
+
+app:
+  filePath: D:/var/uploaded_files/
+  pre: /files
+
+
+
+logging:
+   level:
+    com:
+       example:
+         looedu:
+           mapper: debug
