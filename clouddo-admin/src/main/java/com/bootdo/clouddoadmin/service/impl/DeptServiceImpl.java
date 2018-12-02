@@ -68,15 +68,15 @@ public class DeptServiceImpl implements DeptService {
 			tree.setState(state);
 			trees.add(tree);
 		}
-		// 默认顶级菜单为０，根据数据库实际情况调整
+
 		Tree<DeptDO> t = BuildTree.build(trees);
 		return t;
 	}
 
 	@Override
 	public boolean checkDeptHasUser(Long deptId) {
-		// TODO Auto-generated method stub
-		//查询部门以及此部门的下级部门
+
+
 		int result = sysDeptMapper.getDeptUserNumber(deptId);
 		return result==0?true:false;
 	}

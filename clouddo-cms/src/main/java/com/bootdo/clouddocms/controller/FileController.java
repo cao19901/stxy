@@ -8,7 +8,7 @@ import com.bootdo.clouddocommon.context.FilterContextHandler;
 import com.bootdo.clouddocommon.utils.FileUtils;
 import com.bootdo.clouddocommon.utils.PageUtils;
 import com.bootdo.clouddocommon.utils.Query;
-import com.bootdo.clouddocommon.utils.R;
+import com.bootdo.clouddocommon.utils.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-/**
- * 文件上传
- *
- * @author cxw
- * @email 337619617@qq.com
- * @date 2018-03-12 12:17:36
- */
+
 
 @RestController
 @RequestMapping("/file")
@@ -41,19 +35,19 @@ public class FileController {
     private FileService fileService;
 
     @GetMapping("{id}")
-    public R get(@PathVariable Long id) {
+    public ResultVO get(@PathVariable Long id) {
         FileDTO fileDTO = FileConvert.MAPPER.do2dto(fileService.get(id));
-        return R.data(fileDTO);
+        return ResultVO.data(fileDTO);
     }
 
     @GetMapping("getToken")
-    public R getToken() {
-        return R.ok().put("token", FilterContextHandler.getToken()).put("url", "http://localhost:8002/api-cms/file/upload")
+    public ResultVO getToken() {
+        return ResultVO.ok().put("token", FilterContextHandler.getToken()).put("url", "http://localhost:8002/api-cms/file/upload")
                 .put("key", UUID.randomUUID().toString());
     }
 
     @PostMapping("upload")
-    public R upload(MultipartFile file, String key) {
+    public ResultVO upload(MultipartFile file, String key) {
         try {
             String resPath = FileUtils.saveFile(file.getBytes(), filePath, key);
             fileService.save(new FileDO() {{
@@ -61,56 +55,46 @@ public class FileController {
                 setUrl("http://localhost:8004" + filePre + "/"+resPath);
                 setType(1);
             }});
-            return R.ok().put("resPath", resPath);
+            return ResultVO.ok().put("resPath", resPath);
         } catch (IOException e) {
             e.printStackTrace();
-            return R.error("文件上传失败");
+            return ResultVO.error("文件上传失败");
         }
     }
 
-    /**
-     * 分页查询
-     */
+
     @GetMapping
-    public R list(@RequestParam Map<String, Object> params) {
+    public ResultVO list(@RequestParam Map<String, Object> params) {
         Query query = new Query(params);
         List<FileDO> fileList = fileService.list(query);
-//        List<FileDTO> fileDTOS = FileConvert.MAPPER.dos2dtos(fileList);
+
         int total = fileService.count(query);
-//        PageUtils pageUtils = new PageUtils(fileDTOS, total);
+
         PageUtils pageUtils = new PageUtils(fileList, total);
-        return R.page(pageUtils);
+        return ResultVO.page(pageUtils);
     }
 
-    /**
-     * 保存
-     */
+
     @PostMapping
-    public R save(FileDO file) {
-        return R.operate(fileService.save(file) > 0);
+    public ResultVO save(FileDO file) {
+        return ResultVO.operate(fileService.save(file) > 0);
     }
 
-    /**
-     * 修改
-     */
+
     @PutMapping
-    public R update(FileDO file) {
-        return R.operate(fileService.update(file) > 0);
+    public ResultVO update(FileDO file) {
+        return ResultVO.operate(fileService.update(file) > 0);
     }
 
-    /**
-     * 删除
-     */
+
     @DeleteMapping
-    public R remove(Long id) {
-        return R.operate(fileService.remove(id) > 0);
+    public ResultVO remove(Long id) {
+        return ResultVO.operate(fileService.remove(id) > 0);
     }
 
-    /**
-     * 删除
-     */
+
     @DeleteMapping("/batchRemove")
-    public R remove(@RequestParam("ids[]") Long[] ids) {
-        return R.operate(fileService.batchRemove(ids) > 0);
+    public ResultVO remove(@RequestParam("ids[]") Long[] ids) {
+        return ResultVO.operate(fileService.batchRemove(ids) > 0);
     }
 }

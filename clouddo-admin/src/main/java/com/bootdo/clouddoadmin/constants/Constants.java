@@ -1,9 +1,6 @@
 package com.bootdo.clouddoadmin.constants;
 
-/**
- * @author cxw
- * @version V1.0
- */
+
 public class Constants {
 
     public static final String USER_TOKEN_ID = "userId";

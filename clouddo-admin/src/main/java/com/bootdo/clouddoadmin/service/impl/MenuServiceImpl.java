@@ -25,10 +25,7 @@ public class MenuServiceImpl implements MenuService {
     @Autowired
     RoleMenuDao roleMenuMapper;
 
-    /**
-     * @param
-     * @return 树形菜单
-     */
+
     @Cacheable
     @Override
     public Tree<MenuDO> getSysMenuTree(Long id) {
@@ -45,7 +42,7 @@ public class MenuServiceImpl implements MenuService {
             tree.setAttributes(attributes);
             trees.add(tree);
         }
-        // 默认顶级菜单为０，根据数据库实际情况调整
+
         Tree<MenuDO> t = BuildTree.build(trees);
         return t;
     }
@@ -106,21 +103,21 @@ public class MenuServiceImpl implements MenuService {
             tree.setParentId(menuDO.getParentId().toString());
             tree.setText(menuDO.getName());
             tree.setObject(menuDO);
-//			Map<String,Object> map =new HashMap<>(16);
-//			map.put("url",menuDO.getUrl());
-//			map.put("perms",menuDO.getPerms());
-//
-//			tree.setAttributes(map);
+
+
+
+
+
             trees.add(tree);
         }
-        // 默认顶级菜单为０，根据数据库实际情况调整
+
         Tree<MenuDO> t = BuildTree.build(trees);
         return t;
     }
 
     @Override
     public Tree<MenuDO> getTree(Long id) {
-        // 根据roleId查询权限
+
         List<MenuDO> menus = menuMapper.list(new HashMap<String, Object>(16));
         List<Long> menuIds = roleMenuMapper.listMenuIdByRoleId(id);
         List<Long> temp = menuIds;
@@ -146,7 +143,7 @@ public class MenuServiceImpl implements MenuService {
             tree.setState(state);
             trees.add(tree);
         }
-        // 默认顶级菜单为０，根据数据库实际情况调整
+
         Tree<MenuDO> t = BuildTree.build(trees);
         return t;
     }
@@ -163,15 +160,10 @@ public class MenuServiceImpl implements MenuService {
         return permsSet;
     }
 
-    /**
-     * 获取角色下的权限所有id
-     *
-     * @param roleId
-     * @return
-     */
+
     @Override
     public List<Long> MenuIdsByRoleId(Long roleId) {
-        // 根据roleId查询权限,只保留子节点，父节点的选中或半选中状态，前台自动调整
+
         List<MenuDO> menus = menuMapper.list(new HashMap<String, Object>(16));
         List<Long> menuIds = roleMenuMapper.listMenuIdByRoleId(roleId);
         List<Long> temp = menuIds;
@@ -183,11 +175,7 @@ public class MenuServiceImpl implements MenuService {
         return menuIds;
     }
 
-    /**
-     * 用户的路由
-     *
-     * @return
-     */
+
     @Override
     public List<RouterDTO> RouterDTOsByUserId(Long userId) {
         List<MenuDO> menuDOs = userMenus(userId);
@@ -235,7 +223,7 @@ public class MenuServiceImpl implements MenuService {
             tree.setAttributes(attributes);
             trees.add(tree);
         }
-        // 默认顶级菜单为０，根据数据库实际情况调整
+
         List<Tree<MenuDO>> list = BuildTree.buildList(trees, "0");
         return list;
     }

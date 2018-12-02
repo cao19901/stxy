@@ -10,7 +10,7 @@ import com.bootdo.clouddocommon.context.FilterContextHandler;
 import com.bootdo.clouddocommon.dto.LoginDTO;
 import com.bootdo.clouddocommon.dto.UserToken;
 import com.bootdo.clouddocommon.utils.JwtUtils;
-import com.bootdo.clouddocommon.utils.R;
+import com.bootdo.clouddocommon.utils.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,10 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author cxw
- * @version V1.0
- */
+
 @RequestMapping()
 @RestController
 public class LoginController {
@@ -40,7 +37,7 @@ public class LoginController {
 
     @Log("登录")
     @PostMapping("/login")
-    R login(@Valid @RequestBody LoginDTO loginDTO, HttpServletRequest request, HttpServletResponse response) {
+    ResultVO login(@Valid @RequestBody LoginDTO loginDTO, HttpServletRequest request, HttpServletResponse response) {
         String username = loginDTO.getUsername().trim();
         String password = loginDTO.getPwd().trim();
         password = MD5Utils.encrypt(username, password);
@@ -48,11 +45,11 @@ public class LoginController {
         param.put("username", username);
         List<UserDO> userDOs = userService.list(param);
         if(userDOs.size()<1){
-            return R.error("用户或密码错误");
+            return ResultVO.error("用户或密码错误");
         }
         UserDO userDO = userDOs.get(0);
         if (null == userDO || !userDO.getPassword().equals(password)) {
-            return R.error("用户或密码错误");
+            return ResultVO.error("用户或密码错误");
         }
         UserToken userToken = new UserToken(userDO.getUsername(), userDO.getUserId().toString(), userDO.getName());
         String token="";
@@ -61,10 +58,10 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //首先清除用户缓存权限
+
         menuService.clearCache(userDO.getUserId());
-        // String token = tokenService.createToken(userDO.getUserId());
-        return R.ok("登录成功")
+
+        return ResultVO.ok("登录成功")
                 .put("token", token).put("user",userDO)
                 .put("perms",menuService.PermsByUserId(userDO.getUserId()))
                 .put("router",menuService.RouterDTOsByUserId(userDO.getUserId()));
@@ -72,9 +69,9 @@ public class LoginController {
 
 
     @RequestMapping("/logout")
-    R logout(HttpServletRequest request, HttpServletResponse response) {
+    ResultVO logout(HttpServletRequest request, HttpServletResponse response) {
         menuService.clearCache(Long.parseLong(FilterContextHandler.getUserID()));
-        return R.ok();
+        return ResultVO.ok();
     }
 
 

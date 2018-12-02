@@ -6,13 +6,7 @@ import com.bootdo.clouddoadmin.domain.DeptDO;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 部门管理
- * 
- * @author cxw
- * @email 337619617@qq.com
- * @date 2017-09-27 14:28:36
- */
+
 public interface DeptService {
 	
 	DeptDO get(Long deptId);

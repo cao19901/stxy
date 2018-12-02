@@ -5,13 +5,7 @@ import com.bootdo.clouddocms.domain.FileDO;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 文件上传
- * 
- * @author cxw
- * @email 337619617@qq.com
- * @date 2018-03-11 20:04:05
- */
+
 public interface FileService {
 	
 	FileDO get(Long id);

@@ -26,10 +26,6 @@ public interface RoleService {
 
 	int batchremove(Long[] ids);
 
-    /**
-     * 获取用户的角色id
-     * @param userId
-     * @return 角色id
-     */
+
 	List<Long> RoleIdsByUserId(Long userId);
 }

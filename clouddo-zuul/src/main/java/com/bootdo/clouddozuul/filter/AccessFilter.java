@@ -6,15 +6,12 @@ import com.bootdo.clouddocommon.dto.MenuDTO;
 import com.bootdo.clouddocommon.dto.UserToken;
 import com.bootdo.clouddocommon.utils.JSONUtils;
 import com.bootdo.clouddocommon.utils.JwtUtils;
-import com.bootdo.clouddocommon.utils.R;
-import com.bootdo.clouddocommon.utils.StringUtils;
+import com.bootdo.clouddocommon.utils.ResultVO;
 import com.bootdo.clouddozuul.prc.admin.MenuService;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.multipart.MultipartRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,12 +20,10 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Set;
 
-/**
- * @version V1.0
- * @Author bootdo 1992lcg@163.com
- */
+
 @Slf4j
 public class AccessFilter extends ZuulFilter {
+
     @Autowired
     MenuService menuService;
 
@@ -64,18 +59,18 @@ public class AccessFilter extends ZuulFilter {
             accessToken = request.getParameter(CommonConstants.TOKEN);
         }
         if (null == accessToken) {
-            setFailedRequest(R.error401(), 200);
+            setFailedRequest(ResultVO.error401(), 200);
             return null;
         }
         try {
             UserToken userToken = JwtUtils.getInfoFromToken(accessToken);
         } catch (Exception e) {
-            setFailedRequest(R.error401(), 200);
+            setFailedRequest(ResultVO.error401(), 200);
             return null;
         }
         FilterContextHandler.setToken(accessToken);
         if(!havePermission(request)){
-            setFailedRequest(R.error403(), 200);
+            setFailedRequest(ResultVO.error403(), 200);
             return null;
         }
         Set<String> headers = (Set<String>) ctx.get("ignoredHeaders");

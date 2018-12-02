@@ -65,9 +65,9 @@
     <logger name="org.hibernate" level="error"/>
     <logger name="com.alibaba.druid" level="error"/>
     <logger name="io" level="error"/>
-    <logger name="org.apache.http" level="error"/>
-    <logger name="com.zaxxer.hikari" level="error"/>
-    <logger name="com.netflix" level="error"/>
+    <!--<logger name="org.apache.http" level="error"/>-->
+    <!--<logger name="com.zaxxer.hikari" level="error"/>-->
+    <!--<logger name="com.netflix" level="error"/>-->
 
     <root level="debug">
         <appender-ref ref="consoleLog" />

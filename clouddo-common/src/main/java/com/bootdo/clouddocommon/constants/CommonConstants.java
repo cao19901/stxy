@@ -8,4 +8,11 @@ public class CommonConstants {
     public final static String JWT_PRIVATE_KEY ="wwwbootdocom";
     public final static String RENEWAL_TIME =  "renewalTime";
     public final static String TOKEN = "token";
+    public final static String OFFSET = "offset";
+    public final static String LIMIT = "limit";
+    public final static Integer LIMITSIZE = 5;
+
+
+
+
 }

@@ -3,19 +3,14 @@ package com.bootdo.clouddocommon.utils;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * 查询参数
- */
+
 public class Query extends LinkedHashMap<String, Object> {
     private static final long serialVersionUID = 1L;
     private int offset;
     private int limit;
     private int page;
 
-    /**
-     * 可以根据 offset和limit查询，也可以根据page和limit查询
-     * @param params
-     */
+
     public Query(Map<String, Object> params) {
         this.putAll(params);
         if (null != params.get("limit")) {

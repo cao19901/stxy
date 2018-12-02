@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-/**
- * @version V1.0
- */
+
 @RestController
 public class LoginController {
     @Autowired

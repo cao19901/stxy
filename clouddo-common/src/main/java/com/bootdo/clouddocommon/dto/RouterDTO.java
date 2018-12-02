@@ -14,9 +14,7 @@ public class RouterDTO implements Serializable {
     private String name;
 
     private String redirect;
-    /**
-     * 是否为叶子节点
-     */
+
     private boolean leaf;
     private boolean menuShow;
     private Long parentId;
@@ -39,12 +37,12 @@ public class RouterDTO implements Serializable {
                 Long id = parent.getId();
                 if (id != null && id.equals(pid)) {
                     parent.getChildren().add(child);
-                    // child.setHasParent(true);
-                   // parent.setChildren(true);
-                    //parent.setLeaf(false);
+
+
+
                     continue;
                 } else {
-                   // parent.setLeaf(true);
+
                 }
             }
         }

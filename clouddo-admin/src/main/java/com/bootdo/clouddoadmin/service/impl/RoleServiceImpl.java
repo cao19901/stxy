@@ -57,7 +57,7 @@ public class RoleServiceImpl implements RoleService {
             userRoleDTO.setChecked(false);
             for (Long roleId : rolesIds) {
                 if (Objects.equals(roleDO.getRoleId(), roleId)) {
-                    // roleDO.setRoleSign("true");
+
                     userRoleDTO.setChecked(true);
                     break;
                 }
@@ -129,12 +129,7 @@ public class RoleServiceImpl implements RoleService {
         return r;
     }
 
-    /**
-     * 获取用户的角色id
-     *
-     * @param userId
-     * @return 角色id
-     */
+
     @Override
     public List<Long> RoleIdsByUserId(Long userId) {
         return roleMapper.roleIdsByUserId(userId);

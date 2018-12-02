@@ -3,7 +3,7 @@ package com.bootdo.clouddoadmin.controller;
 import com.bootdo.clouddoadmin.domain.DeptDO;
 import com.bootdo.clouddoadmin.domain.Tree;
 import com.bootdo.clouddoadmin.service.DeptService;
-import com.bootdo.clouddocommon.utils.R;
+import com.bootdo.clouddocommon.utils.ResultVO;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -13,13 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 部门管理
- * 
- * @author cxw
- * @email 337619617@qq.com
- * @date 2017-09-27 14:40:36
- */
+
 
 @RestController
 @RequestMapping("/dept")
@@ -54,77 +48,69 @@ public class DeptController extends BaseController {
 		return  prefix + "/add";
 	}
 
-//	@GetMapping("/edit/{deptId}")
-//	@RequiresPermissions("system:sysDept:edit")
-//	String edit(@PathVariable("deptId") Long deptId, Model model) {
-//		DeptDO sysDept = sysDeptService.get(deptId);
-//		model.addAttribute("sysDept", sysDept);
-//		if(Constant.DEPT_ROOT_ID.equals(sysDept.getParentId())) {
-//			model.addAttribute("parentDeptName", "无");
-//		}else {
-//			DeptDO parDept = sysDeptService.get(sysDept.getParentId());
-//			model.addAttribute("parentDeptName", parDept.getName());
-//		}
-//		return  prefix + "/edit";
-//	}
 
-	/**
-	 * 保存
-	 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	@ResponseBody
 	@PostMapping("/save")
 	@RequiresPermissions("system:sysDept:add")
-	public R save(DeptDO sysDept) {
+	public ResultVO save(DeptDO sysDept) {
 		if (sysDeptService.save(sysDept) > 0) {
-			return R.ok();
+			return ResultVO.ok();
 		}
-		return R.error();
+		return ResultVO.error();
 	}
 
-	/**
-	 * 修改
-	 */
+
 	@ResponseBody
 	@RequestMapping("/update")
 	@RequiresPermissions("system:sysDept:edit")
-	public R update(DeptDO sysDept) {
+	public ResultVO update(DeptDO sysDept) {
 		if (sysDeptService.update(sysDept) > 0) {
-			return R.ok();
+			return ResultVO.ok();
 		}
-		return R.error();
+		return ResultVO.error();
 	}
 
-	/**
-	 * 删除
-	 */
+
 	@PostMapping("/remove")
 	@ResponseBody
 	@RequiresPermissions("system:sysDept:remove")
-	public R remove(Long deptId) {
+	public ResultVO remove(Long deptId) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("parentId", deptId);
 		if(sysDeptService.count(map)>0) {
-			return R.error(1, "包含下级部门,不允许修改");
+			return ResultVO.error("1", "包含下级部门,不允许修改");
 		}
 		if(sysDeptService.checkDeptHasUser(deptId)) {
 			if (sysDeptService.remove(deptId) > 0) {
-				return R.ok();
+				return ResultVO.ok();
 			}
 		}else {
-			return R.error(1, "部门包含用户,不允许修改");
+			return ResultVO.error("1", "部门包含用户,不允许修改");
 		}
-		return R.error();
+		return ResultVO.error();
 	}
 
-	/**
-	 * 删除
-	 */
+
 	@PostMapping("/batchRemove")
 	@ResponseBody
 	@RequiresPermissions("system:sysDept:batchRemove")
-	public R remove(@RequestParam("ids[]") Long[] deptIds) {
+	public ResultVO remove(@RequestParam("ids[]") Long[] deptIds) {
 		sysDeptService.batchRemove(deptIds);
-		return R.ok();
+		return ResultVO.ok();
 	}
 
 	@GetMapping("/tree")
