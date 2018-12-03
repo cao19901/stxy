@@ -19,7 +19,7 @@ public class CommonExceptionHandler {
     public Object handleBindException(MethodArgumentNotValidException ex) {
         FieldError fieldError = ex.getBindingResult().getFieldError();
         log.info("必填校验异常: {}({})", fieldError.getDefaultMessage(),fieldError.getField());
-        return ResultVO.error(GlobalEnum.PARAMETER_EXCEPTION.getCode() , fieldError.getDefaultMessage());
+        return ResultVO.error(Integer.valueOf(GlobalEnum.PARAMETER_EXCEPTION.getCode()) , fieldError.getDefaultMessage());
     }
 
 
@@ -29,18 +29,19 @@ public class CommonExceptionHandler {
         //校验 除了 requestbody 注解方式的参数校验 对应的 bindingresult 为 BeanPropertyBindingResult
         FieldError fieldError = ex.getBindingResult().getFieldError();
         log.info("必填校验异常:{}({})", fieldError.getDefaultMessage(),fieldError.getField());
-        return ResultVO.error(GlobalEnum.PARAMETER_EXCEPTION.getCode() , fieldError.getDefaultMessage());
+        return ResultVO.error(Integer.valueOf(GlobalEnum.PARAMETER_EXCEPTION.getCode()) , fieldError.getDefaultMessage());
     }
 
 
     @ExceptionHandler(RuntimeException.class)
     ResultVO runtimeException(RuntimeException e) {
-
-        return ResultVO.error(GlobalEnum.RUNTIMEEXCEPTION.getCode(), GlobalEnum.RUNTIMEEXCEPTION.getMessage());
+        log.error(e.getMessage());
+        return ResultVO.error(Integer.valueOf(GlobalEnum.RUNTIMEEXCEPTION.getCode()), GlobalEnum.RUNTIMEEXCEPTION.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     ResultVO exception(Exception e){
-        return ResultVO.error(GlobalEnum.ERROE500.getCode(), e.getMessage());
+        log.error(e.getMessage());
+        return ResultVO.error(Integer.valueOf(GlobalEnum.ERROE500.getCode()), e.getMessage());
     }
 }

@@ -26,6 +26,8 @@ mybatis:
   mapper-locations: classpath*:mapper/*.xml
   configuration:
       map-underscore-to-camel-case: true # 下划线转驼峰
+#      call-setters-on-nulls: true # null 是否返回
+
 
 mapper:
    mappers: com.bootdo.clouddoadmin.dao

@@ -3,6 +3,11 @@ package com.bootdo.clouddocommon.utils;
 import javax.servlet.http.HttpServletRequest;
 
 public class HttpServletUtils {
+    /**
+     * 判断是否是ajax 请求
+     * @param req
+     * @return
+     */
     public static boolean jsAjax(HttpServletRequest req){
 
         boolean isAjaxRequest = false;
@@ -11,4 +16,9 @@ public class HttpServletUtils {
         }
         return isAjaxRequest;
     }
+
+
+
+
+
 }

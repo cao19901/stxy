@@ -10,7 +10,7 @@ public enum  GlobalEnum implements  BaseEnum {
      *
      */
     ERROE("-1", "异常"),
-    SUCCESS("0","成功"),
+    SUCCESS("0","操作成功"),
     ERROE500("500","操作失败"),
     ERROE401("401","你还没有登录"),
     ERROE403("403","你没有访问权限"),

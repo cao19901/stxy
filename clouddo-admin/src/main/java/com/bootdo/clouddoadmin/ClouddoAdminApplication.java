@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan(basePackages = "com.bootdo.clouddoadmin.dao")
 @SpringBootApplication(scanBasePackages = {"com.bootdo.clouddoadmin", "com.bootdo.clouddocommon"})
 @EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class})
-@EnableTransactionManagement // 开始事务 , 分布式事务
+@EnableTransactionManagement // 开始事务 , 非分布式事务
 public class ClouddoAdminApplication {
 
     public static void main(String[] args) {

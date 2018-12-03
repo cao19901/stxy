@@ -51,7 +51,7 @@ public class IotCardController extends BaseController {
         List<Map<String, Object>> list = cardService.list(params);
         PageInfo<Map<String, Object>> mapPageInfo = new PageInfo<>(list);
 
-        return  ResultVO.ok();
+        return  ResultVO.result(GlobalEnum.SUCCESS,mapPageInfo);
     }
 
 

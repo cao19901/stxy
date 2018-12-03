@@ -6,7 +6,6 @@ import com.bootdo.clouddocommon.dto.UserToken;
 import com.bootdo.clouddocommon.utils.JwtUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;

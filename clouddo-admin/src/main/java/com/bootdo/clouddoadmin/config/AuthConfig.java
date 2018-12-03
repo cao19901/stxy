@@ -17,13 +17,11 @@ public class AuthConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         InterceptorRegistration addInterceptor = registry.addInterceptor(authIntercepter());
-
-
         addInterceptor.excludePathPatterns("/error");
         addInterceptor.excludePathPatterns("/login**");
         addInterceptor.excludePathPatterns("/test**");
-
-
         addInterceptor.addPathPatterns("/**");
     }
+
+
 }

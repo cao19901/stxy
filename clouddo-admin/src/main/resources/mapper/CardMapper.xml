@@ -5,7 +5,27 @@
 
 
     <select id="list" resultType="java.util.HashMap">
-        select * from iotcard.sys_log
+        SELECT
+            a.`card_id`,
+            a.`card_code`,
+            a.`iccid`,
+            a.`clien_iccid`,
+            a.`imsi`,
+            a.`supplier_id`,
+            c.`supplier_name` ,
+            a.`flow_pool_id`,
+            a.`sale_state`,
+            a.`package_id`,
+            a.`card_type`,
+            a.`create_time`,
+            b.`flow_size` ,
+            b.`package_name` ,
+            b.`carrier_operator` ,
+            case b.carrier_operator when 1 THEN '中国移动' when 2 THEN '中国联通' when 3 THEN'中国电信' else '未知' end as operator_name
+        FROM
+            m_iotcard AS a
+        LEFT JOIN m_flow_package AS b ON a.package_id = b.package_id
+        LEFT JOIN m_supplier AS c ON a.supplier_id = c.supplier_id
     </select>
 
 
