@@ -35,13 +35,13 @@ public class CommonExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
     ResultVO runtimeException(RuntimeException e) {
-        log.error(e.getMessage());
+        log.error("出现异常:" +e.getMessage());
         return ResultVO.error(Integer.valueOf(GlobalEnum.RUNTIMEEXCEPTION.getCode()), GlobalEnum.RUNTIMEEXCEPTION.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     ResultVO exception(Exception e){
-        log.error(e.getMessage());
+        log.error("未知异常 :" + e.getMessage());
         return ResultVO.error(Integer.valueOf(GlobalEnum.ERROE500.getCode()), e.getMessage());
     }
 }

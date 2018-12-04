@@ -21,6 +21,36 @@
 
   </select>
 
+  <insert id="save" parameterType="com.bootdo.clouddoadmin.dto.FlowPackageDTO">
+    INSERT INTO `new_wuliancard`.`m_flow_package` (
+      `package_name`,
+      `type`,
+      `flow_size`,
+      `carrier_operator`,
+      `sell_price`,
+      `access_price`,
+      `package_status`,
+      `supplier_id`,
+      `discount`
+  )
+  VALUES
+      (
+        #{packageName},
+        #{type},
+        #{flowSize},
+        #{carrierOperator},
+        #{sellPrice},
+        #{accessPrice},
+        #{packageStatus},
+        #{supplierId},
+        #{discount}
+      );
+
+
+
+
+  </insert>
+
 
 
 

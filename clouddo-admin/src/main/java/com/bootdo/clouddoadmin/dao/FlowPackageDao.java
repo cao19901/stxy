@@ -15,5 +15,12 @@ public interface FlowPackageDao {
      */
     List<FlowPackageDTO> list();
 
+    /**
+     * 保存流量产品
+     * @param flowPackageDTO
+     * @return
+     */
+    int save(FlowPackageDTO flowPackageDTO) ;
+
 
 }

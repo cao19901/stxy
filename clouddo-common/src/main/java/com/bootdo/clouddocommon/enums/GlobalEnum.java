@@ -15,6 +15,7 @@ public enum  GlobalEnum implements  BaseEnum {
     ERROE401("401","你还没有登录"),
     ERROE403("403","你没有访问权限"),
     ERROE901("901","导入读取文件异常"),
+    ADDFLOWPACKAGEEXCEPTION("10100","新增流量包异常"),
     RUNTIMEEXCEPTION("9999","哎呀!遇到错误,稍后重试"),
     PARAMETER_EXCEPTION("10001", "参数不正确"),
     UNKNOW_EXECPTION("19999","未处理异常")

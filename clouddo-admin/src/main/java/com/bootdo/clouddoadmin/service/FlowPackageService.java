@@ -10,10 +10,17 @@ import java.util.List;
 public interface FlowPackageService {
 
     /**
-     *
+     *查询流量包列表
      * @return
      */
     List<FlowPackageDTO> list();
+
+
+    /**
+     * 新增流量包
+     * @param flowPackageDTO
+     */
+    int save(FlowPackageDTO flowPackageDTO);
 
 
 }
