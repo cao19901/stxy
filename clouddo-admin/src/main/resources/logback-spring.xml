@@ -22,7 +22,7 @@
         <!--滚动策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>D:/log/info.%d.log</fileNamePattern>
+            <fileNamePattern>/Users/a10105/install/log/info.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
@@ -38,7 +38,7 @@
         <!--滚动策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>D:/log/debug.%d.log</fileNamePattern>
+            <fileNamePattern>/Users/a10105/install/log/debug.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
@@ -53,7 +53,7 @@
         <!--滚动策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>D:/log/error.%d.log</fileNamePattern>
+            <fileNamePattern>/Users/a10105/install/log/error.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
