@@ -14,12 +14,7 @@ import java.util.Set;
 public interface MenuService {
 	Tree<MenuDO> getSysMenuTree(Long id);
 
-	/**
-	 * 登录用户的权限
-	 * @author cxw
-	 * @param userId
-	 * @return
-	 */
+
 	List<MenuDO> userMenus(Long userId);
 
 	List<Tree<MenuDO>> listMenuTree(Long id);
@@ -43,20 +38,11 @@ public interface MenuService {
 
 	Set<String> listPerms(Long userId);
 
-	/**
-	 * 获取角色下的权限所有id
-	 * @param roleId
-	 * @return
-	 */
+
 	List<Long> MenuIdsByRoleId(Long roleId);
 
-	/**
-	 * 用户的路由
-	 * @return
-	 */
+
 	List<RouterDTO> RouterDTOsByUserId(Long userId);
-	/**
-	 * 用户权限
-	 */
+
 	List<String> PermsByUserId(Long userId);
 }

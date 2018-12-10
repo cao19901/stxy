@@ -1,16 +1,16 @@
 
 spring:
   application:
-    name: eureka-cardService
+    name: eureka-cardService  # 注册中心的名称
 
 server:
-  port: 8001
+  port: 8001  # 端口
 eureka:
   instance:
     hostname: localhost
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    registerWithEureka: false # 由于该应用是注册中心,所以设置为false 表示不向注册中心注册自己
+    fetchRegistry: false # 设置不去检索服务
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 

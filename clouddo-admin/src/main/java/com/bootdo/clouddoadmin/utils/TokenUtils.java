@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * @author cxw
- * @version V1.0
- */
+
 public class TokenUtils {
     @Autowired
     TokenDao tokenDao;

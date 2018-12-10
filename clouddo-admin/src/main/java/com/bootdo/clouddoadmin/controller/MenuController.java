@@ -6,7 +6,7 @@ import com.bootdo.clouddoadmin.service.MenuService;
 import com.bootdo.clouddocommon.annotation.Log;
 import com.bootdo.clouddocommon.context.FilterContextHandler;
 import com.bootdo.clouddocommon.dto.MenuDTO;
-import com.bootdo.clouddocommon.utils.R;
+import com.bootdo.clouddocommon.utils.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author cxw
- * @version V1.0
- */
+
 @RequestMapping("/menu")
 @RestController()
 public class MenuController {
@@ -47,23 +44,23 @@ public class MenuController {
     }
 
     @PutMapping()
-    R update(@RequestBody MenuDO menuDO){
+    ResultVO update(@RequestBody MenuDO menuDO){
         if(menuService.update(menuDO)>0){
-            return R.ok();
+            return ResultVO.ok();
         }
-        return  R.error();
+        return  ResultVO.error();
     }
     @PostMapping
-    R save(@RequestBody MenuDO menuDO){
-        return R.operate(menuService.save(menuDO)>0);
+    ResultVO save(@RequestBody MenuDO menuDO){
+        return ResultVO.operate(menuService.save(menuDO)>0);
     }
 
     @DeleteMapping()
-    R remove(Long id){
+    ResultVO remove(Long id){
         if(menuService.remove(id)>0){
-            return R.ok();
+            return ResultVO.ok();
         }
-        return R.error();
+        return ResultVO.error();
     }
 
     @GetMapping("userMenus")
@@ -81,18 +78,15 @@ public class MenuController {
     }
 
     @GetMapping("clearCache")
-    R clearCache(){
+    ResultVO clearCache(){
         Boolean flag = menuService.clearCache(Long.parseLong(FilterContextHandler.getUserID()));
         if (flag){
-            return  R.ok();
+            return  ResultVO.ok();
         }
-        return R.error();
+        return ResultVO.error();
     }
 
-    /**
-     * 当前用户菜单的树形结构
-     * @return
-     */
+
     @RequestMapping("/currentUserMenus")
     List<Tree<MenuDO>> currentUserMenus() {
         List<Tree<MenuDO>> menus = menuService.listMenuTree(Long.parseLong(FilterContextHandler.getUserID()));

@@ -4,17 +4,14 @@ import com.bootdo.clouddoadmin.domain.RoleDO;
 import com.bootdo.clouddoadmin.service.RoleService;
 import com.bootdo.clouddocommon.utils.PageUtils;
 import com.bootdo.clouddocommon.utils.Query;
-import com.bootdo.clouddocommon.utils.R;
+import com.bootdo.clouddocommon.utils.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author cxw
- * 角色
- */
+
 @RequestMapping("/role")
 @RestController
 public class RoleController {
@@ -22,7 +19,7 @@ public class RoleController {
     RoleService roleService;
 
     @GetMapping()
-    PageUtils list(@RequestParam Map<String, Object> params) {
+        PageUtils list(@RequestParam Map<String, Object> params) {
         Query query = new Query(params);
         List<RoleDO> roleDOS = roleService.list(query);
         int total = roleService.count(query);
@@ -36,19 +33,19 @@ public class RoleController {
     }
 
     @PostMapping
-    R save(@RequestBody RoleDO roleDO){
+    ResultVO save(@RequestBody RoleDO roleDO){
         if(roleService.save(roleDO)>0){
-            return R.ok();
+            return ResultVO.ok();
         }
-        return R.error();
+        return ResultVO.error();
     }
 
     @PutMapping
-    R update(@RequestBody RoleDO roleDO){
+    ResultVO update(@RequestBody RoleDO roleDO){
         if(roleService.update(roleDO)>0){
-            return R.ok();
+            return ResultVO.ok();
         }
-        return R.error();
+        return ResultVO.error();
     }
 
 }

@@ -3,17 +3,10 @@ package com.bootdo.clouddoadmin.dao;
 import com.bootdo.clouddoadmin.domain.TokenDO;
 import org.apache.ibatis.annotations.*;
 
-/**
- * @author cxw
- * @version V1.0
- */
+
 @Mapper
 public interface TokenDao {
-    /**
-     * 根据用户id保存token
-     * @param tokenDO
-     * @return
-     */
+
     @Insert("insert into  sys_user_token (user_id,token,expire_time,update_time) values (#{userId},#{token},#{expireTime},#{updateTime})")
     int save(TokenDO  tokenDO);
 

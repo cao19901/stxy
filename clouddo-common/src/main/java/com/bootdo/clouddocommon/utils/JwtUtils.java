@@ -8,10 +8,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.util.Date;
 
-/**
- * @author cxw
- * @version V1.0
- */
+
 public class JwtUtils {
     public static String generateToken(UserToken userToken, int expire) throws Exception {
         String token = Jwts.builder()

@@ -89,7 +89,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>easyexcel</artifactId>
-            <version>1.0.0-RELEASE</version>
+            <version>1.1.2-beta4</version>
         </dependency>
 
         <!--补全项目依赖-->
@@ -114,6 +114,11 @@
             <artifactId>logback-classic</artifactId>
             <version>1.1.1</version>
         </dependency>
+
+
+
+
+
 
 
 
@@ -163,6 +168,8 @@
             </resource>
         </resources>
     </build>
+
+
 
 
 </project>

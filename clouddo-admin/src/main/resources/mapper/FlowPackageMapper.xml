@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bootdo.clouddoadmin.dao.FlowPackageDao">
+
+
+  <!--查询流量包列表-->
+  <select id="list" resultType="com.bootdo.clouddoadmin.dto.FlowPackageDTO" parameterType="java.util.HashMap">
+    select
+      a.package_id ,
+      a.package_name,
+      a.type ,
+      case a.type when 0 then '月包' when 1 then '季包' when 2 then '半年包' when 3 then '年包' when 4 then '三年包' when 5  then '五年包' else '未知' end as type_name,
+      a.flow_size ,
+      a.carrier_operator ,
+      case a.carrier_operator when 1 then '中国移动' when 2 then '中国联通' when 3 then '中国电信' else '未知' end as operator_name,
+      a.sell_price ,
+      a.access_price ,
+      a.supplier_id ,
+      a.discount
+    from m_flow_package AS a
+
+  </select>
+
+  <insert id="save" parameterType="com.bootdo.clouddoadmin.dto.FlowPackageDTO">
+    INSERT INTO `new_wuliancard`.`m_flow_package` (
+      `package_name`,
+      `type`,
+      `flow_size`,
+      `carrier_operator`,
+      `sell_price`,
+      `access_price`,
+      `package_status`,
+      `supplier_id`,
+      `discount`
+  )
+  VALUES
+      (
+        #{packageName},
+        #{type},
+        #{flowSize},
+        #{carrierOperator},
+        #{sellPrice},
+        #{accessPrice},
+        #{packageStatus},
+        #{supplierId},
+        #{discount}
+      );
+
+
+
+
+  </insert>
+
+
+
+
+
+</mapper>

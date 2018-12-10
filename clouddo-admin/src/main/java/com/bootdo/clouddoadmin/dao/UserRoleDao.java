@@ -6,13 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 用户与角色对应关系
- * 
- * @author cxw
- * @email 337619617@qq.com
- * @date 2017-10-03 11:08:59
- */
+
 @Mapper
 public interface UserRoleDao {
 

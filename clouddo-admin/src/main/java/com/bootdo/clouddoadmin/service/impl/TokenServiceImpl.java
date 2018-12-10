@@ -9,21 +9,18 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.UUID;
 
-/**
- * @author cxw
- * @version V1.0
- */
+
 @Service
 public class TokenServiceImpl implements TokenService {
     @Autowired
     TokenDao tokenDao;
-    //过期时间，单位s
+
     private final static int EXPIRE = 60*30;
     @Override
     public String createToken(Long userId) {
-        //当前时间
+
         Date now = new Date();
-        //过期时间
+
         Date expireTime = new Date(now.getTime()+EXPIRE*1000);
         TokenDO tokenDO = new TokenDO();
         tokenDO.setUserId(userId);

@@ -2,10 +2,7 @@ package com.bootdo.clouddoadmin.domain;
 
 import java.util.Date;
 
-/**
- * @author cxw
- * @version V1.0
- */
+
 public class TokenDO {
     private static final long serialVersionUID = 1L;
 
@@ -19,21 +16,13 @@ public class TokenDO {
                 '}';
     }
 
-    /**
-     * 用户ID
-     */
+
     private Long userId;
-    /**
-     * token
-     */
+
     private String token;
-    /**
-     * 过期时间
-     */
+
     private Date expireTime;
-    /**
-     * 更新时间
-     */
+
     private Date updateTime;
 
     public Long getUserId() {
