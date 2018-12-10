@@ -25,6 +25,11 @@ public class FlowPackageController extends BaseController {
     @Autowired
     private FlowPackageService flowPackageService ;
 
+    /**
+     * 查询流量包列表
+     * @param params
+     * @return
+     */
     @GetMapping
     public PageInfo<FlowPackageDTO> list(@RequestParam Map<String, Object> params) {
         // 设置分页
@@ -34,6 +39,11 @@ public class FlowPackageController extends BaseController {
     }
 
 
+    /**
+     * 新增流量包
+     * @param flowPackageDTO
+     * @return
+     */
     @PostMapping
     public Object save(@RequestBody FlowPackageDTO flowPackageDTO) {
         flowPackageService.save(flowPackageDTO);
